@@ -11,16 +11,12 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
-        if 'file' not in request.files:
-            return redirect(request.url)
-        file = request.files.get('file')
-        if not file:
-            return
-        img_bytes = file.read()
-        class_id, class_name = get_prediction(image_bytes=img_bytes)
+        # img_bytes = file.read()
+        img_urls = ["https://www.indiewire.com/wp-content/uploads/2019/12/beach_bum.jpg?w=510"]
+        result = get_prediction(urls=img_urls)
         class_name = format_class_name(class_name)
-        return render_template('result.html', class_id=class_id,
-                               class_name=class_name)
+        return render_template('result.html', class_id=result,
+                               class_name=result)
     return render_template('index.html')
 
 
