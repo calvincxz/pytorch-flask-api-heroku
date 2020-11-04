@@ -11,6 +11,7 @@ import numpy as np
 from torch.autograd import Variable
 import torch.nn.functional as F
 import torchvision
+classes = ["Adventure", "Comedy", "Action", "Romance", "Drama", "Crime", "Thriller", "Horror", "Mystery", "Documentary"]
 
 def get_model():
     # model = models.densenet121(pretrained=True)
