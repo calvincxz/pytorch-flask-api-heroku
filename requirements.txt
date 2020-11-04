@@ -4,4 +4,4 @@ torchvision==0.2.1
 numpy==1.16.4
 Pillow==6.2.0
 gunicorn==19.9.0
-requests==2.8.1
+requests==2.24.0

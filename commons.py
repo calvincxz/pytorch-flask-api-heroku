@@ -36,7 +36,7 @@ def get_model():
                           nn.ReLU(), 
                           nn.Dropout(0.5),
                           nn.Linear(256, len(classes)))
-
+    net.to(device)
     net.load_state_dict(torch.load(PATH, map_location=str(device)))
     net.to(device)
     return net

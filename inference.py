@@ -3,13 +3,18 @@ import json
 from commons import get_model, transform_image
 import torchvision
 import torchvision.transforms as transforms
-
+from PIL import Image
 import requests
 from io import BytesIO
+from torchvision import models
+import torch
+import torch.nn as nn
+import numpy as np
+import torch.nn.functional as F
 
 net = get_model()
 classes = ["Adventure", "Comedy", "Action", "Romance", "Drama", "Crime", "Thriller", "Horror", "Mystery", "Documentary"]
-
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 def processImage(img):
     resize = transforms.Resize((224, 224))
     normalize = transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
@@ -33,4 +38,5 @@ def get_prediction(urls):
         output = net(processedImage.view(1, 3, 224, 224).to(device))
 
     percentages = torch.sigmoid(output[0]).numpy() * 100
-    return('Predicted:\n\n' + '\n'.join([(classes[i] + ": %.2f%%" % percentages[i]) for i in range(len(classes))]))
+    return [(classes[i] + ": %.2f%%" % percentages[i]) for i in range(len(classes))]
+    # return('Predicted:\n\n' + '\n'.join([(classes[i] + ": %.2f%%" % percentages[i]) for i in range(len(classes))]))

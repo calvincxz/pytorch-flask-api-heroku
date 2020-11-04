@@ -8,11 +8,10 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
-        # img_bytes = file.read()
-        img_urls = ["https://www.indiewire.com/wp-content/uploads/2019/12/beach_bum.jpg?w=510"]
+        img_urls = [request.form['url']]
+        # img_urls = ["https://www.indiewire.com/wp-content/uploads/2019/12/beach_bum.jpg?w=510"]
         result = get_prediction(urls=img_urls)
-        class_name = format_class_name(class_name)
-        return render_template('result.html', class_id=result,
+        return render_template('result.html', img_url=img_urls[0],
                                class_name=result)
     return render_template('index.html')
 

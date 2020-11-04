@@ -22,10 +22,18 @@
   </head>
   <body class="text-center">
     <form class="form-signin" method=post enctype=multipart/form-data>
-        <img class="mb-4" src="/static/pytorch.png" alt="" width="72">
-        <h1 class="h3 mb-3 font-weight-normal">Prediction</h1>
-        <h5 class="h5 mb-3 font-weight-normal">Detected Image: {{ class_name }}</h5>
-        <h5 class="h6 mb-3 font-weight-normal">ImageNet Class ID: {{ class_id }}</h5>
+        <img src={{ img_url }} alt="Italian Trulli" style="width:300px;">
+        <h4 class="h5 mb-3 font-weight-normal">Predicted Genres:</h4>
+        <h5 class="h5 mb-3 font-weight-normal">{{ class_name[0] }}</h5>
+        <h5 class="h5 mb-3 font-weight-normal">{{ class_name[1] }}</h5>
+        <h5 class="h5 mb-3 font-weight-normal">{{ class_name[2] }}</h5>
+        <h5 class="h5 mb-3 font-weight-normal">{{ class_name[3] }}</h5>
+        <h5 class="h5 mb-3 font-weight-normal">{{ class_name[4] }}</h5>
+        <h5 class="h5 mb-3 font-weight-normal">{{ class_name[5] }}</h5>
+        <h5 class="h5 mb-3 font-weight-normal">{{ class_name[6] }}</h5>
+        <h5 class="h5 mb-3 font-weight-normal">{{ class_name[7] }}</h5>
+        <h5 class="h5 mb-3 font-weight-normal">{{ class_name[8] }}</h5>
+        <h5 class="h5 mb-3 font-weight-normal">{{ class_name[9] }}</h5>
         <p class="mt-5 mb-3 text-muted">Built using Pytorch, Flask and Love</p>
     </form>
     <script src="//code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
