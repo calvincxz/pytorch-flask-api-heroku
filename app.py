@@ -7,13 +7,21 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
+    error = ""
+
     if request.method == 'POST':
         img_urls = [request.form['url']]
-        # img_urls = ["https://www.indiewire.com/wp-content/uploads/2019/12/beach_bum.jpg?w=510"]
+    else:
+        img_urls = ["https://upload.wikimedia.org/wikipedia/en/b/b0/Les-miserables-movie-poster1.jpg"]
+
+    try:
         result = get_prediction(urls=img_urls)
-        return render_template('result.html', img_url=img_urls[0],
-                               class_name=result)
-    return render_template('index.html')
+    except:
+        img_urls = ["https://upload.wikimedia.org/wikipedia/en/b/b0/Les-miserables-movie-poster1.jpg"]
+        result = get_prediction(urls=img_urls)
+        error="Invalid URL format"
+    return render_template('result.html', img_url=img_urls[0],
+                                  class_name=result, error=error)
 
 
 if __name__ == '__main__':
