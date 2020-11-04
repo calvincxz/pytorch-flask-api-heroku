@@ -38,5 +38,9 @@ def get_prediction(urls):
         output = net(processedImage.view(1, 3, 224, 224).to(device))
 
     percentages = torch.sigmoid(output[0]).numpy() * 100
-    return [(classes[i] + ": %.2f%%" % percentages[i]) for i in range(len(classes))]
+    x = list(enumerate(percentages))
+    x.sort(key=lambda x: x[1], reverse=True)
+    sorted = x
+    print(sorted)
+    return [(classes[i] + ": %.2f%%" % percentages[i]) for i, j in sorted]
     # return('Predicted:\n\n' + '\n'.join([(classes[i] + ": %.2f%%" % percentages[i]) for i in range(len(classes))]))
